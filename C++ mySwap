@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+void mySwap(int, int);
+
+void nextYear(int &a)
+{
+a++;
+return;
+}
+int main()
+{
+int age;
+cout << "Enter age: ";
+cin >> age;
+
+
+nextYear(age);
+cout << "Next year age: " << age << endl;
+
+system("pause");
+return 0;
+}
+void mySwap(int, int)
+{
+
+}
