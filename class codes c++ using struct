@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Car  //ADT
+{
+	string radio;
+	int  seats;
+	bool bluetooth;
+	bool sunRoof;
+	string carType;
+};
+int main()
+{
+	Car myCar;
+
+	cout << "Enter car radio type: ";
+	cin >> myCar.radio;
+
+	myCar.bluetooth = false;
+	myCar.carType = "Sedan";
+	myCar.radio = "Am/Fm";
+	myCar.sunRoof = false;
+	myCar.seats = 4;
+
+	Car sonCar = { "Xm/CD", 4, true, false, "Sedan" };
+
+	cout << "My Son's car:\n";
+	cout << "Car type: "<< sonCar.carType << endl;
+	cout << "Number of seats: " << sonCar.seats << endl;
+
+	system("pause");
+	return 0;
+}
