@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Box { //ADT
+int l, w;
+};
+
+void dispBox(Box b);
+void dispBox(Box []);
+int main()
+{
+
+Box listBox[4];
+for (int i = 0; i < 4; i++)
+{
+cout << "Enter box size: ";
+cin >> listBox[i].l >> listBox[i].w;
+}
+for (int i = 0; i < 4; i++)
+{
+dispBox(listBox[i]);
+}
+
+cout << "\n\n\n";
+dispBox(listBox);
+
+system("pause");
+return 0;
+}
+void dispBox(Box b)
+{
+cout << "Length: " << b.l;
+cout << "\nWidth: " << b.w << endl;
+
+}
+
+void dispBox(Box b[])
+{
+for (int i = 0; i < 4; i++)
+{
+cout << "Length: " << b[i].l;
+cout << "\nWidth: " << b[i].w << endl;
+
+}
+}
