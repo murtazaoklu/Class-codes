@@ -1,0 +1,77 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+struct Movie
+{
+string title;
+int year;
+char rating; //R, G, N
+int len; //length in min;
+
+Movie();
+Movie(string t, int y, char r, int l);
+void dispMovie();
+};
+
+Movie::Movie()
+{
+title = "";
+year = 1900;
+rating = 'N';
+len = 0;
+}
+Movie::Movie(string t, int y, char r, int l)
+{
+title = t;
+year = y;
+rating = r;
+len = l;
+}
+void Movie::dispMovie()
+{
+cout << "Movie title: " << title << endl;
+cout << "Year released: " << year << endl;
+cout << "Rating: " << rating << endl;
+cout << "Length: " << len << endl;
+}
+int main()
+{
+
+string str;
+Movie mine;
+Movie his = Movie();
+
+string t;
+int y, l;
+char r;
+
+mine.title = "Avatar";
+mine.len = 120;
+mine.rating = 'G';
+mine.year = 2009;
+
+mine.dispMovie();
+
+cout << "Enter title: ";
+getline(cin, t);
+
+cout << "Enter year: ";
+getline(cin, str);
+stringstream(str) >> y;
+
+cout << "Enter rating: ";
+getline(cin, str);
+stringstream(str) >> r;
+
+cout << "Enter length in min: ";
+getline(cin, str);
+stringstream(str) >> l;
+
+Movie yours = Movie(t, y, r, l);
+
+yours.dispMovie();
+system("pause");
+return 0;
+}
