@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct Car
+{
+int seats;
+bool Xm, sunRoof;
+int year;
+
+Car();
+void dispCar();
+};
+
+Car::Car()
+{
+seats = 4;
+Xm = sunRoof = false;
+year = 2013;
+}
+void Car::dispCar()
+{
+cout << "Seats: " << seats << endl;
+cout << "Year: " << year << endl;
+cout << "Xm radio: " << Xm << ", Sun roof: " << sunRoof << endl;
+}
+int main()
+{
+Car myCar;
+myCar.dispCar();
+
+system("pause");
+return 0;
+}
