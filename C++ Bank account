@@ -1,0 +1,117 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <cmath>
+
+using namespace std;
+
+enum {EXIT, DISPLAY, DEPOSITE, WITHDRAW} choices;
+
+struct BankAcct
+{
+    int ID;		//Account id
+    float bal;	//Balance
+};
+
+//Protoypes listing
+
+void Process(BankAcct &);
+void DispMenu();
+
+int main()
+{
+    BankAcct acct = {100, 2340.0};//Declare one account with ID=100 and Bal 2340.0
+    bool quit = false;
+    int id;
+    int tries = 1;
+    do
+    {
+        cout <<"Enter bank account or 0 to quit: ";
+        cin >> id;
+        if (id == 0)
+            quit = true;
+        else if (id == acct.ID)
+        {
+            Process(acct);
+            quit = true;
+        }
+        else
+        {
+            cout << "ID: " << id <<" Invalid account number!\n";
+            system ("pause");
+            system ("cls");
+            if (tries == 3)
+            {
+                quit = true;
+                cout <<"Too many tries; exiting\n";
+                system ("pause");
+            }
+            tries++;
+        }
+        
+    }while (quit == false);
+    
+    return 0;
+}
+
+void DispMenu()
+{
+    cout << "1) Check Balance \n";
+    cout << "2) Deposite Money\n";
+    cout << "3) Withdraw Money\n";
+    cout << "0) Exit\n";
+}
+
+void Process(BankAcct &acct)
+{
+    float amnt;
+    bool quit = false;
+    int option;
+    int tries;
+    do
+    {
+        DispMenu();
+        
+        cin >> option;
+        tries = 1;
+        switch (option)
+        {
+            case DISPLAY:
+                cout << "ID: " << acct.ID << " Balance is : $" <<acct.bal<<endl;
+                break;
+            case DEPOSITE:
+                cout << "Enter amount to deposite: ";
+                cin >> amnt;
+                
+                acct.bal += amnt;
+                cout << "ID: " << acct.ID << " Amount deposited: $ "<< amnt << endl;
+                cout << "ID: " << acct.ID << " New balance after deposite is : $" <<acct.bal<<endl;
+                break;
+            case WITHDRAW:
+                do{
+                    cout << "Enter amount to withdraw: ";
+                    cin >> amnt;
+                    if (amnt < acct.bal)
+                    {
+                        acct.bal -= amnt;
+                        cout << "ID: " << acct.ID <<" Amount withdrwan: $ "<< amnt << endl;
+                        cout << "ID: " << acct.ID <<" New balance after withdraw is : $" <<acct.bal<<endl;
+                        system ("pause");
+                    }
+                    else
+                    {
+                        cout << "ID: " << acct.ID << " Insufficient funds!\n";
+                        system ("pause");
+                        system ("cls");
+                    }
+                    
+                }while (++tries <4 && amnt > acct.bal);
+                
+                break;
+            case EXIT:
+                quit = true;
+            default:
+                cout<< "Wrong choice!\n";
+        }
+    }while (quit == false);
+}
