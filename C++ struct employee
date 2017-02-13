@@ -1,0 +1,86 @@
+//
+//  main.cpp
+//  structpdf
+//
+//  Created by Murtaza Oklu on 2/11/17.
+//  Copyright © 2017 Murtaza Oklu. All rights reserved.
+//
+
+// This program demonstrates the use of structures.
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <cmath>
+using namespace std;
+
+const int SIZE = 25; // Array size
+
+struct PayRoll
+{
+    int empNumber; // Employee number
+    char name[25]; // Employee's name
+    double hours; // Hours worked
+    double payRate; // Hourly pay rate
+    double grossPay; // Gross pay
+    
+    PayRoll();
+    PayRoll(int e, char n, double h, double p, double g);
+    void dispPayRoll();
+};
+PayRoll::PayRoll()
+{
+    name[25] = 'Jill Smith';
+    empNumber = 489;
+    hours = 40;
+    payRate = 20;
+    grossPay = hours*payRate;
+}
+PayRoll::PayRoll(int e, char n, double h, double p, double g)
+{
+    name[25] = n;
+    empNumber = e;
+    hours = h;
+    payRate = p;
+    grossPay = g;
+}
+void PayRoll::dispPayRoll()
+{
+    cout << "Enter the employee's number: " << empNumber << endl;
+    cout << "Enter the employee's name: " << name << endl;
+    cout << "How many hours did the employee work?" << hours << endl;
+    cout << "What is the employee's hourly pay rate?" << payRate << endl;
+}
+int main()
+{
+    PayRoll employee; // employee is a PayRoll structure.
+    string str;
+    int e;
+    char n;
+    double h, p, g;
+    // Get the employee's number.
+    cout << "Enter the employee's number: ";
+    cin >> employee.empNumber;
+    // Get the employee's name.
+    cout << "Enter the employee's name: ";
+    cin.ignore(); // To skip the remaining '\n' character
+    cin.getline(employee.name, SIZE);
+    // Get the hours worked by the employee.
+    cout << "How many hours did the employee work? ";
+    cin >> employee.hours;
+    // Get the employee's hourly pay rate.
+    cout << "What is the employee's hourly pay rate? ";
+    cin >> employee.payRate;
+    // Calculate the employee's gross pay.
+    employee.grossPay = employee.hours * employee.payRate;
+    // Display the employee data.
+    cout << "Here is the employee's payroll data:\n";
+    cout << "Name: " << employee.name << endl;
+    cout << "Number: " << employee.empNumber << endl;
+    cout << "Hours worked: " << employee.hours << endl;
+    cout << "Hourly pay rate: " << employee.payRate << endl;
+    cout << fixed << showpoint << setprecision(2);
+    cout << "Gross pay: $" << employee.grossPay << endl;
+    system("return");
+    return 0;
+}
+
