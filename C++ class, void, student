@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Student ADT
+class Student {
+private:
+string studFName, studLName;
+float studExam1, studExam2, studExam3;
+float studAvg;
+char studGrade; // A-F
+
+public:
+Student(string fn = "", string ln = "", float e1 = 0, float e2 = 0, float e3 = 0);
+void gradeAvg();
+void gradeA_F();
+void disp();
+static int count;
+};
+Student::Student(string fn, string ln, float e1, float e2, float e3)
+{
+studFName = fn;
+studLName = ln;
+studExam1 = e1;
+studExam2 = e2;
+studExam3 = e3;
+studAvg = 0;
+studGrade = 32;
+++count;
+}
+void Student::gradeAvg() {
+float studScore = studExam1 + studExam2 + studExam3;
+studAvg = studScore / 3.0;
+}
+void Student::gradeA_F() {
+if (studAvg >= 90)
+studGrade = 'A';
+else if (studAvg >= 80)
+studGrade = 'B';
+else if (studAvg >= 70)
+studGrade = 'C';
+else if (studAvg >= 60)
+studGrade = 'D';
+else
+studGrade = 'F';
+}
+void Student::disp()
+{
+cout << "Student: " << studFName << ", " << studLName << endl;
+cout << "Exam 1: " << studExam1 << endl;
+cout << "Exam 2: " << studExam2 << endl;
+cout << "Exam 3: " << studExam3 << endl;
+cout << "Final Grade: " << studAvg << endl;
+cout << "Letter Grade: " << studGrade << endl;
+}
+int Student::count = 0;
+
+int main()
+{
+Student stud("Joe", "Jackson", 55, 45, 60);
+Student list[10];
+
+
+stud.gradeAvg();
+stud.gradeA_F();
+stud.disp();
+
+cout << "\n\nStudent count is: " << Student::count << endl;
+system("pause");
+return 0;
+}
