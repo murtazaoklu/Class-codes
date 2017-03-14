@@ -1,0 +1,103 @@
+//
+//  main.cpp
+//  studentgrad class
+//
+//  Created  on 3/11/17.
+//   All rights reserved.
+//
+// This demonstrates the polymorphic behavior
+// of classes with virtual functions.
+#include <iostream>
+#include <string>
+using namespace std;
+
+enum Discipline { ARCHEOLOGY, BIOLOGY, COMPUTER_SCIENCE };
+enum Classification { FRESHMAN, SOPHOMORE, JUNIOR, SENIOR };
+
+class Person{
+protected:
+    string name;
+public:
+    Person() { setName(""); }
+    Person(string pName) { setName(pName); }
+    void setName(string pName) { name = pName; }
+    
+    // function.
+    string getName() { return name; }
+};
+
+class Student:public Person
+{
+private:
+    Discipline major;
+    Person *advisor;
+public:
+    Student(string sname, Discipline d, Person *adv)
+    : Person(sname)
+    {
+        major = d;
+        advisor = adv;
+    }
+    void setMajor(Discipline d) { major = d; }
+    Discipline getMajor() { return major; }
+    void setAdvisor(Person *p) { advisor = p; }
+    Person *getAdvisor() { return advisor; }
+};
+
+class Faculty:public Person
+{
+private:
+    Discipline department;
+public:
+    Faculty(string fname, Discipline d) : Person(fname)
+    {
+        department = d;
+    }
+    void setDepartment(Discipline d) { department = d; }
+    Discipline getDepartment( ) { return department; }
+};
+
+class TFaculty : public Faculty
+{
+private:
+    string title;
+public:
+    TFaculty(string fname, Discipline d, string title)
+    : Faculty(fname, d)
+    {
+        setTitle(title);
+    }
+    
+    void setTitle(string title) { this->title = title; }
+    
+    // Virtual function
+    string getName( )
+    {
+        return title + " " + Person::getName();
+    }
+};
+
+
+
+int main()
+{
+    // Create objects.
+    
+    TFaculty Tf1("Indiana Jones", ARCHEOLOGY, "Dr.");
+    Student  Stud("Thomas Cruise", COMPUTER_SCIENCE, NULL);
+    Faculty  Fac("James Stock", BIOLOGY);
+    TFaculty Tf2("Sharon Rock", BIOLOGY, "Professor");
+    TFaculty Tf3("Nicole Eweman", ARCHEOLOGY, "Dr.");
+    
+    
+    // Print the names of the Person objects.
+    
+    cout << Tf1.getName() << endl;
+    cout << Stud.getName() << endl;
+    cout << Fac.getName() << endl;
+    cout << Tf2.getName() << endl;
+    cout << Tf3.getName() << endl;
+    
+    system ("pause");  
+    return 0;
+}
