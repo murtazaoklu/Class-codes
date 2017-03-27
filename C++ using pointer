@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+int main()
+{
+int A = 12;
+int B = 10;
+
+int *Aptr;
+Aptr = &A;
+int *Bptr = &B;
+
+int Z;
+
+Z = A + B;
+cout << "Sum: " << Z << endl;
+Z = *Aptr + *Bptr;
+cout << "Sum: " << Z << endl;
+
+*Bptr = 2;
+Z = A + B;
+cout << "Sum: " << Z << endl;
+
+cout << endl << A << endl << B << endl;
+cout << endl << *Aptr << endl << *Bptr << endl;
+
+cout << hex<<&A << endl;
+cout << hex << endl << Aptr << endl;
+
+system("pause");
+return 0;
+}
