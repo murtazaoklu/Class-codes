@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+int main()
+{
+const int SIZE = 6;
+string name, address;
+int item, quantity;
+double price;
+bool foundIt = false;
+
+int VALID_ITEM[] = { 106, 108, 307, 405, 457, 688 };
+
+double VALID_ITEM_PRICE[] = { 0.59, 0.99, 4.50, 15.99, 17.50, 39.00 };
+
+//get name, address, item, quantity
+cout << "Enter Item and quantity: ";
+cin >> item >> quantity;
+
+int i = 0;
+while (i < SIZE)
+{
+if (item == *(VALID_ITEM + i))
+{
+foundIt = true;
+
+price = *(VALID_ITEM_PRICE + i);
+
+}
+
+++i;
+}
+
+
+system("pause");
+return 0;
+}
