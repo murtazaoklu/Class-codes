@@ -1,0 +1,116 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Car        //ADT
+{
+public:
+    Car();            //Constructor
+    ~Car();
+    Car(int s, bool r, bool sr, char f);
+    void dispCar();
+    void horn() { cout << "\a\a\a"; }
+private:
+    int seats;
+    bool Xm;
+    bool sunroof;
+    char fuelType;    //G, D, H
+};
+Car::Car(int s, bool r, bool sr, char f)
+{
+    seats = s;
+    Xm = r;
+    sunroof = sr;
+    fuelType = f;
+}
+
+Car::Car()
+{
+    seats = 4;
+    fuelType = 'G';
+    Xm = sunroof = false;
+}
+Car::~Car()
+{
+    cout << "Removing object Car\n";
+}
+void Car::dispCar()
+{
+    cout << "Number of seats: " << seats << endl;
+    cout << "Fuel type: " << fuelType << endl;
+    cout << "Has Xm Radio: " << Xm << endl;
+    cout << "Has sunroof: " << sunroof << endl;
+}
+class Dealership {
+private:
+    string name;
+public:
+    Dealership(string n = NULL) { name = n; }
+    void dispDealer() { cout << "\n\nDealership: " << name << endl; }
+};
+
+class Truck : public Car {
+private:
+    bool fourWD, extendedCap, towying;
+    int numbnerWheels;
+    string make, model;
+    Dealership ds;
+public:
+    Truck() : Car()    // Default truck constructor
+    {
+        fourWD = extendedCap = towying = false;
+        numbnerWheels = 4;
+        make = "Ford";
+        model = "F150";
+    }
+    Truck(int s, bool r, bool sr, char f, bool fWD, bool eCap, bool t, int nw, string mk, string m, string dsname)
+        :Car(s, r, sr, f), ds(dsname)
+    {
+        fourWD = fWD;
+        extendedCap = eCap;
+        towying = t;
+        numbnerWheels = nw;
+        make = mk;
+        model = m;
+    }
+    void dispTruck()
+    {
+        ds.dispDealer();
+        cout << "\nMake: " << make << "\tModel: " << model << "\n\n";
+    }
+    void horn() { for (int i = 0; i < 10; i++)
+        cout << "\a\a\a\a\a\a\a\a\a"; 
+    }
+};
+int main()
+{
+    Car myCar;
+    Car hisCar = Car();
+    hisCar.horn();
+
+    int seats;
+    bool Xm, sr;
+    char ft;
+
+    Truck myTruck = Truck(6, true, true, 'D', true, true, true, 6, "Chevy", "3500", "Classic Chevy");
+    myTruck.horn();
+    myTruck.dispTruck();
+
+    cout << "Enter number of seats: ";
+    cin >> seats;
+    cout << "Enter 1/0 for Xm radio and Sunroof: ";
+    cin >> Xm >> sr;
+    cout << "Enter fuel type: G, D, H: ";
+    cin >> ft;
+
+    Car yourCar = Car(seats, Xm, sr, ft);
+
+    yourCar.dispCar();
+    myCar.dispCar();
+    hisCar.dispCar();
+
+    cout << "\n\nCar listed from the array of cars\n\n";
+    
+    system("pause");
+    return 0;
+}
