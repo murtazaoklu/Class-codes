@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Base {
+private:
+string name;
+int age;
+int *ptr;
+public:
+Base(string n = "", int a = 0) {
+name = n;
+age = a;
+ptr = new int[2];
+ptr[0] = 100;
+ptr[1] = 200;
+}
+Base(const Base &cpyObj){
+this->name = cpyObj.name;
+this->age = cpyObj.age;
+ptr = new int[2];
+this->ptr[0] = cpyObj.ptr[0];
+this->ptr[1] = cpyObj.ptr[1];
+}
+~Base(){
+cout << "Destructor for: " << name << "\n\n";
+delete[]ptr;
+}
+void reset(string n, int a, int b)
+{
+name = n;
+ptr[0] = a; ptr[1] = b;
+}
+void disp() {
+cout << "\nName: " << name << " Age: " << age << "\n\n";
+cout << ptr[0] << ", " << ptr[1] << "\n\n";
+}
+};
+
+int main()
+{
+Base he("Joe Jackson", 21);
+he.disp();
+
+Base clone(he);
+clone.reset("Mike Smith", 12, 13);
+clone.disp();
+
+Base twin = he;
+twin.reset("David White", 1000, 2000);
+twin.disp();
+
+he.disp();
+system("pause");
+return 0;
+}
